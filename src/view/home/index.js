@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React, {useState, useEffect} from 'react'
 
-import {api} from '../../services/api'
+import api from '../../services/api'
 
 import logo_gray from '../../assets/logotipo/cinza@3x.png'
 import empresa_icon from '../../assets/icons/SouEmpresa.svg'
@@ -20,11 +20,12 @@ function Home() {
     const [password, setPassword] = useState('');
     const [show, setShow] = useState(false);
 
-    async function ForgotPassword() {
+    async function forgotPassword(e) {
+        e.preventDefault();
         if(state === 'company') {
             const response = await api.post('/forgot_password_company', {email})
             if(response.data.status === 200){
-                alert('Sucesso!!!', response.data.message)
+                alert(`Sucesso!!! ${response.data.message}`)
                 setEmail('')
                 setDisplay('login')
             }else{
@@ -33,7 +34,7 @@ function Home() {
         }else if(state === 'school'){
             const response = await api.post('/forgot_password_school', {email})
             if(response.data.status === 200){
-                alert('Sucesso!!!', response.data.message)
+                alert(`Sucesso!!! ${response.data.message}`)
                 setEmail('')
                 setDisplay('login')
             }else{
@@ -42,7 +43,7 @@ function Home() {
         }else if(state === 'student'){
             const response = await api.post('/forgot_password_student', {email})
             if(response.data.status === 200){
-                alert('Sucesso!!!', response.data.message)
+                alert(`Sucesso!!! ${response.data.message}`)
                 setEmail('')
                 setDisplay('login')
             }else{
@@ -51,7 +52,8 @@ function Home() {
         }
     }
 
-    async function CreateUser() {
+    async function createUser(e) {
+        e.preventDefault();
         if(state === 'company') {
             const response = await api.post('/company', {
                 email,
@@ -59,7 +61,7 @@ function Home() {
                 name,
             })
             if(response.data.status === 200){
-                alert('Sucesso!!!', response.data.message)
+                alert(`Sucesso!!! ${response.data.message}`)
                 setEmail('')
                 setPassword('')
                 setDisplay('login')
@@ -73,7 +75,7 @@ function Home() {
                 name,
             })
             if(response.data.status === 200){
-                alert('Sucesso!!!', response.data.message)
+                alert(`Sucesso!!! ${response.data.message}`)
                 setEmail('')
                 setPassword('')
                 setDisplay('login')
@@ -88,7 +90,7 @@ function Home() {
                 phone
             })
             if(response.data.status === 200){
-                alert('Sucesso!!!', response.data.message)
+                alert(`Sucesso!!! ${response.data.message}`)
                 setEmail('')
                 setPassword('')
                 setDisplay('login')
@@ -99,18 +101,23 @@ function Home() {
     }
 
 
-    async function Login() {
-        const response = api.post('/login', {
-            email,
-            password
-        })
-        
-        if(response.data.status === 201) {
-            alert('Sucesso!!!', 'logou')
-            setEmail('')
-            setPassword('')
-        }else{
-            alert('Erro ao logar!!!', response.data.error)
+    async function login(e) {
+        e.preventDefault();
+        try{
+            const response = await api.post('/login', {
+                email,
+                password
+            })
+            console.log(response.data)
+            if(response.data.status === 201) {
+                alert('Sucesso!!!', 'logou')
+                setEmail('')
+                setPassword('')
+            }else{
+                alert('Erro ao logar!!!', response.data.error)
+            }
+        }catch(err){
+            console.log(err)
         }
     }
 
@@ -122,7 +129,7 @@ function Home() {
                     <S.x onClick={()=>{setShow(false)}} />
                     {
                         display === 'forgot' ?
-                        <form onSubmit={ForgotPassword} >
+                        <form onSubmit={forgotPassword} >
                             <h1>Esqueci minha senha</h1>
                             <input 
                                 placeholder='Informe seu Email' 
@@ -130,11 +137,11 @@ function Home() {
                                 value={email}
                                 onChange={(e)=>setEmail(e.target.value)}
                             />
-                            <S.Button onClick={ForgotPassword} background="#160061" type="button">Enviar</S.Button>
+                            <S.Button onClick={forgotPassword} type="submit" background="#160061" type="button">Enviar</S.Button>
                             <S.a onClick={()=>{setDisplay('login')}}> Retornar a tela de login </S.a>
                         </form>
                         : display === 'login' ?
-                            <form onSubmit={Login}>
+                            <form onSubmit={login}>
                                 <h1>Login</h1>
                                 <input 
                                     placeholder='Email' 
@@ -148,12 +155,12 @@ function Home() {
                                     value={password}
                                     onChange={(e)=>setPassword(e.target.value)}
                                 />
-                                <S.Button onClick={Login} background="#160061" type="button">Entrar</S.Button>
+                                <S.Button onClick={login} type="submit" background="#160061" type="button">Entrar</S.Button>
                                 <S.a onClick={()=>{setDisplay('forgot')}}> Esqueci minha senha </S.a>
                                 <S.a onClick={()=>{setDisplay('create')}}> Não tem cadastro? Clique Aqui. </S.a>
                             </form>
                             : display === 'create' &&
-                                <form onSubmit={CreateUser}>
+                                <form onSubmit={createUser}>
                                     <h1>Criar acesso</h1>
                                     <input 
                                         placeholder='Informe seu nome' 
@@ -180,7 +187,7 @@ function Home() {
                                         value={password}
                                         onChange={e=>setPassword(e.target.value)}
                                     />
-                                    <S.Button onClick={CreateUser} background="#160061" type="button">Cadastrar</S.Button>
+                                    <S.Button onCLick={createUser} type="submit" background="#160061" type="button">Cadastrar</S.Button>
                                     <S.a onClick={()=>{setDisplay('login')}}> Retornar a tela de login </S.a>
                                 </form>
                     }
