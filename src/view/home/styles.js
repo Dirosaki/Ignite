@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import background from '../../assets/background.png'
 import vector from '../../assets/vector.svg'
+import { X } from 'react-feather'
 
 export const MainContainer = styled.div`
     background-color: #333;
@@ -23,12 +24,12 @@ export const MainContainer = styled.div`
 
 export const Container = styled.div`
     width: 100%;
-    height: 1300px;
+    height: auto;
     background-image: url(${vector});
     background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 70px;
 `
@@ -49,7 +50,11 @@ export const Rectangle = styled.div`
     background-color: #E3E3E3;
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    position: relative;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     @media screen and (max-width: 900px){
         margin: 49px 10px 0;
     }
@@ -95,23 +100,91 @@ export const Button = styled.button`
     font-size: 18px;
     font-weight: bold;
     border: none;
-    position: absolute;
     bottom: 21px;
     left: 21px;
     cursor: pointer;
+    transition: filter 2s;
+    text-decoration: none;
+    outline: 0;
 `
 
 export const About = styled.div`
-    height: 520px;
-    width: 100%;
+    height: 550px;
+    width: 90%;
     display: flex;
-    margin-top: 131px;
+    justify-content: space-between;
 `
+
+export const Modal = styled.div`
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+
+    form {
+        width: 400px;
+        min-width: 350px;
+        height: 380px;
+        min-height: 320px;
+        background-color: #E3E3E3;
+        border-top-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        box-shadow: 3px 4px rgba(0, 0, 0, 0.6);
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items:  center;
+        @media screen and (max-width: 900px){
+            margin: 49px 10px 0;
+        };
+        >h1{
+            font-size: 20px;
+            color: #18151C;
+            width: 199px;
+            margin-left: 21px;
+            text-align: center;
+        }
+        input {
+            height: 50px;
+            width: 80%;
+            border-radius: 8px;
+            border-width: 1px;
+            border-color: #160061;
+            text-align: center;
+            font-size: 16px;
+        }
+    };
+`
+export const a = styled.button`
+    font-size: 15px;
+    color: #18151C;
+    width: 250px;
+    margin-left: 21px;
+    text-align: center;
+    border-bottom-width: 0.5px;
+    border-color: #160061;
+`;
+
+export const x = styled(X).attrs({
+    color: '#FFF',
+    size: 35
+})`
+    position: absolute;
+    top: 50px;
+    right: 50px;
+`;
 
 export const AboutRec = styled.div`
     display: flex;
     flex-direction: column;
-    width: 590px;
+    width: 900px;
     margin-right: 120px;
 `
 
@@ -121,6 +194,7 @@ export const TitleAbout = styled.h3`
     font-family: "Aristotelica";
     font-weight: 600;
     text-align: center;
+    margin-top: 50px;
 `
 export const Paragraph = styled.p`
     font-size: 24px;
@@ -180,15 +254,15 @@ export const Footer = styled.div`
 text-align: center;
 width: 100%;
 background-color: #18151C;
-p{
-    color: #E3E3E3;
-    font-size: 20px;
-    font-weight: normal;
-    &:first-child{
-        margin-top: 45px;
+    p{
+        color: #E3E3E3;
+        font-size: 20px;
+        font-weight: normal;
+        &:first-child{
+            margin-top: 45px;
+        }
+        &:last-child{
+            margin-bottom: 45px;
+        }
     }
-    &:last-child{
-        margin-bottom: 45px;
-    }
-}
 `
