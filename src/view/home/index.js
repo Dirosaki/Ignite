@@ -1,14 +1,26 @@
 import React from 'react'
+import Lottie from 'react-lottie';
 
 import logo_gray from '../../assets/logotipo/cinza@3x.png'
 import empresa_icon from '../../assets/icons/SouEmpresa.svg'
 import futuro_icon from '../../assets/icons/SouFuturo.svg'
 import escola_icon from '../../assets/icons/SouEscola.svg'
-
+import animationData from '../../assets/lotties/animation.json'
+import logo_shawee from '../../assets/icons/logo-shawee.png'
+import logo_ccr from '../../assets/icons/logo-ccr.png'
 
 import * as S from './styles'
 
 function Home() {
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: animationData,
+        renderSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
+
     return (
         <S.MainContainer>
             <img src={logo_gray} alt="Logotipo" />
@@ -40,8 +52,38 @@ function Home() {
                         <S.Button background="#44AC6E" type="button">Entrar</S.Button>
                     </S.Rectangle>
                 </S.RecContain>
-                
+                <S.About>
+                    <Lottie
+                        options={defaultOptions}
+                        height={450}
+                        width={450}
+                    />
+                    <S.AboutRec>
+                        <S.TitleAbout>Quem Somos?</S.TitleAbout>
+                        <S.Paragraph color="#4F69EE" font={700} marginT="43px" text="justify">Empresas procuram por profissionais, e pessoas procuram por empregos.</S.Paragraph><br />
+                        <S.Paragraph color="#E3E3E3" font={400} text="justify" >Muitas vezes esse <span>‘match’</span> não é possível, pois segundo o IBGE, dos 50 milhões de pessoas com idades entre 14 e 29 anos, dez milhões, ou seja, 20%, não terminaram alguma das etapas da educação básica e carecem de qualificações necessárias que uma empresa procura. </S.Paragraph>
+                    </S.AboutRec>
+                </S.About>
+                <S.Phrase>
+                    A <span>ignite</span> surgiu com o objetivo de criar a ligação entre profissionais e empresas.
+                </S.Phrase>
+                <S.Paragraph color="#E3E3E3" width="80%" text="center" marginT="30px" marginB="100px">
+                    Queremos disponibilizar qualificação gratuita para quem tem vontade de estudar! <br/> 
+                    Somos uma plataforma que atua em conjunto com instituições de ensino para dar o primeiro passo na carreira de pessoas que pretendem iniciar no mercado de trabalho.
+                </S.Paragraph>
             </S.Container>
+            <S.Partners>
+                <S.TitleAbout>Parceiros</S.TitleAbout>
+                <div>
+                    <img src={logo_shawee} alt="Logo Shawee" />
+                    <img src={logo_ccr} alt="Logo CCR" />
+                </div>
+            </S.Partners>
+            <S.Footer>
+                <p>Como funciona?</p>
+                <p>contato@ignite.tk</p>
+                <p>(xx) xxxx-xxxx</p>
+            </S.Footer>
 
         </S.MainContainer>
     );
