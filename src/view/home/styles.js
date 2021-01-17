@@ -114,10 +114,10 @@ export const Overlay = styled.div`
     z-index: 1;
 `
 
-export const Modal = styled.div`
+export const Modal = styled.form`
     position: fixed;
     top: 50%;
-    height: 370px;
+    height: 375px;
     width: 370px;
     display: none;
     flex-direction: column;
@@ -128,20 +128,6 @@ export const Modal = styled.div`
     border-bottom-right-radius: 30px;
     transform: translateY(-50%);
     z-index: 1;
-`
-
-export const Ancora = styled.a`
-        margin-top: 20px;
-        font-size: 18px;
-        color: #18151C;
-        text-decoration: none;
-        cursor: pointer;
-        &:last-child{
-            margin-top: 5px;
-        }
-        &:hover{
-            color: ${({ color }) => color ? color : '#7A03B2'};
-        }
 `
 
 export const CloseModal = styled.div`
@@ -174,12 +160,13 @@ export const CloseModal = styled.div`
 
 export const TitleLogin = styled.h3`
     font-size: 18px;
-    margin-top: 38px;
+    margin-top: ${({margin}) => margin ? margin : '38px'};
     font-weight: bold;
     color: ${({ color }) => color ? color : '#7A03B2'};
 `
 
 export const Input = styled.input`
+    min-height: 45px;
     height: 45px;
     width: 282px;
     border: 1px solid #18151C;
@@ -189,10 +176,12 @@ export const Input = styled.input`
     font-size: 18px;
     font-weight: 400;
     color: #18151C;
+    visibility: ${({visibility}) => visibility ? visibility : 'initial'};
 `
 
 export const ButtonLogin = styled.button`
-    margin-top: 28px;
+    margin-top: ${({margin}) => margin};
+    min-height: 45px;
     height: 45px;
     width: 199px;
     border-radius: 8px;
@@ -202,6 +191,21 @@ export const ButtonLogin = styled.button`
     border: none;
     background-color: ${({ color }) => color ? color : '#7A03B2'} ;
     cursor: pointer;
+`
+
+export const Ancora = styled.a`
+        margin-top: ${({margin}) => margin ? margin : '20px'};
+        font-size: 18px;
+        color: #18151C;
+        text-decoration: none;
+        cursor: pointer;
+        display: ${({display}) => display ? display : 'auto'};
+        &:last-child{
+            margin-top: ${({margin}) => margin ? margin : '5px'};
+        }
+        &:hover{
+            color: ${({ color }) => color ? color : '#7A03B2'};
+        }
 `
 
 export const About = styled.div`
