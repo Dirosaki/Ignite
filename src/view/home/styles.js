@@ -32,6 +32,7 @@ export const Container = styled.div`
     align-items: center;
     margin-bottom: 70px;
 `
+
 export const RecContain = styled.div`
     display: flex;
     justify-content: center;
@@ -101,6 +102,108 @@ export const Button = styled.button`
     cursor: pointer;
 `
 
+export const Overlay = styled.div`
+    height: 100vh;
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    background-color: rgba(21,21,28,0.73);
+    z-index: 1;
+`
+
+export const Modal = styled.div`
+    position: fixed;
+    top: 50%;
+    height: 370px;
+    width: 370px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 10px 10px rgba(0,0,0,0.5);
+    background-color: #E3E3E3;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    transform: translateY(-50%);
+    z-index: 1;
+`
+
+export const Ancora = styled.a`
+        margin-top: 20px;
+        font-size: 18px;
+        color: #18151C;
+        text-decoration: none;
+        cursor: pointer;
+        &:last-child{
+            margin-top: 5px;
+        }
+        &:hover{
+            color: ${({ color }) => color ? color : '#7A03B2'};
+        }
+`
+
+export const CloseModal = styled.div`
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    opacity: .5;
+    &:hover{
+        opacity: 1;
+    }
+    span{
+        position: absolute;
+        height: 3px;
+        width: 25px;
+        background-color: #18151C;
+        transform: rotate(45deg);
+        border-radius: 35%;
+        &:last-child{
+            transform: rotate(-45deg);
+        }
+    }
+`
+
+export const TitleLogin = styled.h3`
+    font-size: 18px;
+    margin-top: 38px;
+    font-weight: bold;
+    color: ${({ color }) => color ? color : '#7A03B2'};
+`
+
+export const Input = styled.input`
+    height: 45px;
+    width: 282px;
+    border: 1px solid #18151C;
+    border-radius: 8px;
+    margin-top: ${({ margin }) => margin};
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    color: #18151C;
+`
+
+export const ButtonLogin = styled.button`
+    margin-top: 28px;
+    height: 45px;
+    width: 199px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #E3E3E3;
+    border: none;
+    background-color: ${({ color }) => color ? color : '#7A03B2'} ;
+    cursor: pointer;
+`
+
 export const About = styled.div`
     height: 520px;
     width: 100%;
@@ -124,12 +227,12 @@ export const TitleAbout = styled.h3`
 `
 export const Paragraph = styled.p`
     font-size: 24px;
-    text-align: ${({text}) => text};
+    text-align: ${({ text }) => text};
     color: ${({ color }) => color};
     font-weight: ${({ font }) => font};
     margin-top: ${({ marginT }) => marginT};
     margin-bottom: ${({ marginB }) => marginB};
-    width: ${({width}) => width};
+    width: ${({ width }) => width};
     span{
         font-style: italic;
     }
